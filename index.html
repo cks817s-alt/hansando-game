@@ -57,6 +57,7 @@
 
   /* ---------- 화면(오버레이) ---------- */
   .screen { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:1.2em; background:radial-gradient(ellipse at center, rgba(4,16,30,.55), rgba(2,8,16,.9)); overflow:auto; touch-action:pan-y; }
+  .screen { align-items:safe center; }
   .card { width:min(64em, 100%); background:linear-gradient(180deg, rgba(12,34,58,.94), rgba(6,20,36,.96)); border:1px solid var(--line); border-radius:1.4em; padding:1.8em 2em; box-shadow:0 1.2em 3.5em rgba(0,0,0,.6), inset 0 0 0 .25em rgba(245,192,74,.08); text-align:center; }
   .eyebrow { color:var(--gold); letter-spacing:.3em; font-size:.9em; }
   h1 { margin:.1em 0 0; font-size:4.6em; letter-spacing:.14em; color:#fff; text-shadow:0 0 .35em rgba(245,192,74,.7), 0 .06em 0 #7a2a12; }
@@ -160,8 +161,54 @@
   .today .chips { display:flex; flex-wrap:wrap; gap:.4em .9em; justify-content:center; margin-top:.3em; }
   .credit { font-size:.68em; color:var(--dim); margin-top:.6em; line-height:1.5; }
 
+  /* ---------- 2판: 재미 요소 ---------- */
+  #hud.pre .bottom { opacity:.22; }
+  .mid { display:flex; gap:.7em; align-items:flex-end; margin-left:auto; margin-right:1em; }
+  .act.mini { width:6.2em; height:6.2em; --c1:#7fb3e0; --c2:#22598f; --c3:#0f2c4a; --rc:#bfe3ff; }
+  .act.mini .ico { font-size:1.9em; }
+  .act.mini .lbl { font-size:.78em; }
+  .act.mini.sig { --c1:#f0c76a; --c2:#a8641a; --c3:#5a3008; --rc:#ffe08a; }
+  .sides { display:flex; gap:.4em; font-size:.66em; font-weight:800; margin-top:.15em; }
+  .sides i { font-style:normal; padding:.05em .5em; border-radius:1em; background:rgba(0,0,0,.4); opacity:.55; }
+  .sides i.on { background:#ffd66b; color:#5a1a05; opacity:1; }
+  #lureBox { position:absolute; left:50%; top:6.4em; transform:translateX(-50%); width:min(30em, 88vw); background:var(--panel); border:1px solid var(--line); border-radius:.9em; padding:.5em .9em .6em; text-align:center; }
+  #lureBox .lb { display:flex; justify-content:space-between; font-size:.74em; color:var(--dim); }
+  #lureBox .gauge { position:relative; height:1.1em; border-radius:.6em; margin:.35em 0; background:linear-gradient(90deg, #a8322a 0 28%, #2f9a5a 28% 69%, #55606a 69% 100%); }
+  #lureBox .gauge u { position:absolute; top:-.3em; left:50%; width:.4em; height:1.7em; margin-left:-.2em; background:#fff; border-radius:.2em; box-shadow:0 0 .5em #fff; text-decoration:none; }
+  #lureMsg { font-size:.9em; color:#ffe9b0; }
+  #fleetCards { position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); display:flex; gap:.8em; width:min(52em, 94vw); flex-wrap:wrap; justify-content:center; }
+  #fleetCards .fc { flex:1 1 12em; background:linear-gradient(180deg, rgba(12,34,58,.95), rgba(6,20,36,.95)); border:1px solid var(--line); border-radius:1em; padding:.8em 1em; text-align:center; animation:fcin .5s both; }
+  #fleetCards .fc:nth-child(2) { animation-delay:.3s; } #fleetCards .fc:nth-child(3) { animation-delay:.6s; }
+  #fleetCards .fc small { display:block; color:var(--gold); letter-spacing:.15em; font-size:.8em; }
+  #fleetCards .fc b { display:block; font-size:1.7em; margin:.15em 0; }
+  #fleetCards .fc span { font-size:.85em; color:#d9e4ee; }
+  #fleetCards .note { flex-basis:100%; text-align:center; font-size:.9em; background:rgba(0,0,0,.6); border-radius:2em; padding:.45em 1em; animation:fcin .5s .9s both; }
+  @keyframes fcin { 0%{ opacity:0; transform:translateY(1em);} 100%{ opacity:1; transform:none;} }
+  #demoTag { position:absolute; left:50%; top:.5em; transform:translateX(-50%); z-index:30; background:rgba(180,30,20,.88); color:#fff; padding:.35em 1.1em; border-radius:2em; font-weight:800; font-size:.9em; white-space:nowrap; pointer-events:none; animation:pulse 1.6s infinite; }
+  .repro { display:flex; align-items:center; gap:.7em; justify-content:center; margin:.1em auto .6em; max-width:34em; }
+  .repro span { color:var(--gold); font-weight:800; white-space:nowrap; }
+  .repro .bar { flex:1; height:1em; border-radius:.5em; background:rgba(255,255,255,.12); overflow:hidden; }
+  .repro .bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,#f2a12e,#ffe08a); transition:width 1.2s ease-out; }
+  .repro b { font-size:1.6em; color:#ffe08a; font-variant-numeric:tabular-nums; min-width:3.2em; text-align:right; }
+  .badges { display:flex; gap:.45em; justify-content:center; flex-wrap:wrap; margin-bottom:.7em; }
+  .badges span { background:rgba(31,138,76,.3); border:1px solid #7dffb0; border-radius:2em; padding:.25em .85em; font-size:.86em; font-weight:800; }
+  .badges span.off { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.18); color:var(--dim); font-weight:600; }
+  .docsub { margin:.2em 0 .7em; color:var(--dim); font-size:.9em; }
+  .docwrap { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:1em; align-items:start; text-align:left; margin-bottom:.6em; }
+  table.doc { width:100%; border-collapse:collapse; background:#efe3c4; color:#2a1a0c; border-radius:.6em; overflow:hidden; font-size:.86em; }
+  table.doc th { background:#7a2a12; color:#ffe9c4; padding:.4em .5em; font-weight:800; }
+  table.doc td { padding:.36em .5em; border-top:1px solid rgba(90,60,25,.25); vertical-align:top; line-height:1.4; }
+  table.doc td:first-child { font-weight:800; white-space:nowrap; color:#7a2a12; }
+  table.doc td.ok::before { content:'✔ '; color:#1f7a3c; font-weight:900; }
+  .rec { margin:0; background:#0b1a22; border:1px solid rgba(255,255,255,.15); border-radius:.8em; overflow:hidden; }
+  .rec canvas { position:static; inset:auto; display:block; width:100%; height:auto; max-height:52vh; object-fit:contain; margin:0 auto; touch-action:pan-y; }
+  .rec figcaption { font-size:.72em; color:var(--dim); padding:.45em .7em; line-height:1.4; }
+  .docsrc { font-size:.7em; color:var(--dim); margin:0 0 .8em; line-height:1.5; }
+
   @media (max-aspect-ratio: 1/1) {
     :root { --fs: clamp(14px, 2.3vmin, 34px); }
+    .docwrap { grid-template-columns:1fr; }
+    .act.mini { width:5.4em; height:5.4em; }
     #hud { font-size:.86em; }
     #cutin .say { max-width:50vw; word-break:keep-all; }
     #cutin .say b { font-size:clamp(32px, 8.2vw, 150px); white-space:nowrap; }
@@ -196,11 +243,23 @@
   </div>
   <div id="banner" class="serif"><b></b><span></span></div>
   <div id="hint"></div>
+  <div id="lureBox" class="hidden"><div class="lb"><span>◀ 너무 가까움</span><span>알맞은 거리</span><span>너무 멂(적이 의심) ▶</span></div><div class="gauge"><u id="lureMark"></u></div><div id="lureMsg">화면을 누르고 있으면 판옥선이 물러납니다</div></div>
+  <div id="fleetCards" class="hidden">
+    <div class="fc"><small>전라좌수영</small><b class="serif">이순신</b><span>전라좌수사 · 이 싸움을 이끈 장수</span></div>
+    <div class="fc"><small>전라우수영</small><b class="serif">이억기</b><span>전라우수사 · 함께 출전</span></div>
+    <div class="fc"><small>경상우수영</small><b class="serif">원균</b><span>경상우수사 · 함께 출전</span></div>
+    <div class="note">세 수영의 연합 함대 전선 55척(전라 좌·우수영 48척 + 경상우수영 7척) · 게임에서는 판옥선 12척으로 줄여 나타냅니다</div>
+  </div>
   <div class="bottom">
     <button id="btnTurtle" class="act turtle"><span class="ring"></span><span class="ico">🐢</span><span class="lbl">거북선 돌격</span><span class="key" id="turtleSub">준비 완료</span></button>
-    <button id="btnFire" class="act fire"><span class="ring"></span><span class="ico">💥</span><span class="lbl">함포 일제 사격</span><span class="key">바다를 눌러도 발사</span></button>
+    <div class="mid">
+      <button id="btnGun" class="act mini"><span class="ring"></span><span class="ico">🎯</span><span class="lbl" id="gunTxt">소형 총통</span><span class="key">눌러서 바꾸기</span></button>
+      <button id="btnSig" class="act mini sig"><span class="ring"></span><span class="ico">🚩</span><span class="lbl">북·깃발 신호</span><span class="key" id="sigSub">날개 오므리기</span></button>
+    </div>
+    <button id="btnFire" class="act fire"><span class="ring"></span><span class="ico">💥</span><span class="lbl">함포 일제 사격</span><span class="sides"><i id="sideL" class="on">좌현</i><i id="sideR" class="on">우현</i></span></button>
   </div>
 </div>
+<div id="demoTag" class="hidden">▶ 자동 데모 플레이 중 · 화면을 누르면 처음 화면으로</div>
 
 <!-- 첫 사격: 장군의 명령 컷인 (직접 그린 실루엣) -->
 <div id="cutin" class="hidden">
@@ -237,14 +296,16 @@
     <h1 class="serif">한산도 대첩</h1>
     <div class="sub serif">학익진을 펼쳐라</div>
     <div class="grid3">
-      <div class="info"><h3>① 견내량에서 유인</h3><p>이순신은 좁고 암초가 많은 견내량에서 싸우지 않고, 판옥선 몇 척으로 적을 넓은 한산도 앞바다로 끌어냈습니다.</p></div>
+      <div class="info"><h3>① 견내량에서 유인</h3><p>이순신은 좁고 암초가 많은 견내량에서 싸우지 않고, 판옥선 5~6척으로 적을 넓은 한산도 앞바다로 끌어냈습니다.</p></div>
       <div class="info"><h3>② 학익진(鶴翼陣)</h3><p>학이 날개를 펴듯 가운데는 물러나고 양쪽이 나아가 적을 반달 모양으로 에워싸는 진법입니다.</p></div>
-      <div class="info"><h3>③ 판옥선과 총통</h3><p>바닥이 평평한 판옥선은 제자리에서 방향을 바꾸기 쉬웠고, 총통(화포)으로 멀리서 적선을 부쉈습니다.</p></div>
+      <div class="info"><h3>③ 판옥선과 총통</h3><p>바닥이 평평한 판옥선은 제자리에서 방향을 바꾸기 쉬워, 양쪽 옆면의 총통(화포)으로 멀리서 적선을 부쉈습니다.</p></div>
     </div>
     <div class="how">
-      <span>👆 <b>판옥선을 끌어</b> 진형 바꾸기</span>
-      <span>💥 <b>함포 일제 사격</b>으로 왜선 격침</span>
-      <span>🐢 왜선을 잡아 <b>거북선 돌격</b> 충전</span>
+      <span>🚣 <b>누르고 있기</b>로 적을 유인</span>
+      <span>✍️ <b>∪ 모양</b>을 그려 학익진</span>
+      <span>💥 <b>좌현·우현</b> 번갈아 사격</span>
+      <span>🎯 총통 바꾸기 · 🚩 북 신호</span>
+      <span>🐢 <b>거북선 돌격</b></span>
     </div>
     <button id="btnStart" class="go serif">출 전</button>
     <div class="best" id="bestTxt"></div>
@@ -263,15 +324,32 @@
         <div class="rank"><b id="resRank">A</b><small id="resRankName"></small></div>
         <div class="nums">
           <div><small>격침한 왜선</small><b id="resKill"></b></div>
-          <div><small>남은 판옥선</small><b id="resShip"></b></div>
+          <div><small>수리하러 물러난 배</small><b id="resShip"></b></div>
           <div><small>점수</small><b id="resScore"></b></div>
           <div><small>오늘의 최고 점수</small><b id="resBest"></b></div>
         </div>
       </div>
+      <div class="repro"><span>역사 재현도</span><div class="bar"><i id="reproBar"></i></div><b id="reproTxt">0%</b></div>
+      <div class="badges" id="badges"></div>
       <div class="fact" id="resFact"></div>
       <div class="btns">
-        <button id="btnQuiz" class="go sm serif">📜 교과서 그림 퀴즈 (한 문제 +300점) ▶</button>
-        <button id="btnSkip" class="ghost">오늘의 순위 보기</button>
+        <button id="btnDoc" class="go sm serif">📜 나의 장계 · 전투 지도 ▶</button>
+        <button id="btnQuiz" class="ghost">교과서 그림 퀴즈 (+300점)</button>
+        <button id="btnSkip" class="ghost">오늘의 순위</button>
+      </div>
+    </section>
+    <!-- ①-2 나의 장계 -->
+    <section id="pDoc" class="panel hidden">
+      <h2 class="serif">📜 나의 장계(狀啓)</h2>
+      <p class="docsub">장계: 장수가 임금께 올리는 보고서 — 내 전투와 실제 기록을 비교해 보세요 (✔ 실제와 비슷)</p>
+      <div class="docwrap">
+        <table class="doc"><thead><tr><th>항목</th><th>나의 장계</th><th>실제 기록</th></tr></thead><tbody id="docBody"></tbody></table>
+        <figure class="rec"><canvas id="recCv" width="640" height="360"></canvas><figcaption>전투 기록 지도 다시 보기 — 파랑: 판옥선 · 빨강: 왜선 · 주황 ✕: 격침 지점</figcaption></figure>
+      </div>
+      <p class="docsrc">실제 기록 출처: 이순신의 장계 「견내량파왜병장」(1592년 7월 15일), 한국민족문화대백과사전 「한산도대첩」</p>
+      <div class="btns">
+        <button id="btnQuiz2" class="go sm serif">📜 교과서 그림 퀴즈 (+300점) ▶</button>
+        <button id="btnSkip2" class="ghost">오늘의 순위</button>
       </div>
     </section>
     <!-- ② 복습 퀴즈 -->
@@ -337,8 +415,15 @@ const WAVES = [
   { name: '제1파 · 선봉', sub: '빠른 세키부네가 쫓아온다', gap: 1.9,  list: mk('seki', 14) },
   { name: '제2파', sub: '날쌘 고바야와 큰 아타케부네 등장', gap: 1.7, list: [...mk('seki', 16), ...mk('koba', 4), ...mk('atake', 2)] },
   { name: '제3파 · 본대', sub: '적의 본대가 몰려온다!', gap: 1.25, list: [...mk('seki', 14), ...mk('koba', 6), ...mk('atake', 5)] },
-  { name: '적장 출현', sub: '와키자카 야스하루의 대장선을 격침하라', gap: 1.35, boss: true, list: [...mk('seki', 6), ...mk('koba', 3), ...mk('atake', 2)] },
+  { name: '적장 출현', sub: '와키자카 야스하루의 대장선을 물리쳐라', gap: 1.35, boss: true, list: [...mk('seki', 6), ...mk('koba', 3), ...mk('atake', 2)] },
 ];
+/* 총통: 크기가 다른 여러 총통을 함께 썼다(상대적인 차이만 게임으로 표현) */
+const GUNS = {
+  small: { name: '소형 총통', rng: 0.86, dmg: 1, cd: 2.5, err: 1.0, desc: '사거리는 짧지만 장전이 빨라요 — 작은 배가 많을 때' },
+  big:   { name: '대형 총통', rng: 1.2,  dmg: 2, cd: 3.6, err: 1.35, desc: '멀리 쏘고 위력이 크지만 장전이 느려요 — 큰 배를 노릴 때' },
+};
+const SIG_CD = 10;           // 북·깃발 신호 재사용 대기(초)
+const DECOY = [3, 4, 5, 6, 7, 8];   // 유인 함대: 판옥선 6척(실제 5~6척)
 /* 복습 퀴즈 ① 교과서에 실리는 그림 자료(원본 소장처 공개 이미지) — 매 판 3문제를 무작위로, 시대 순서대로 */
 const PQ = [
   { img: 'busanjin', cap: '「부산진순절도」 변박, 1760년 · 육군박물관 소장 · 퍼블릭 도메인(위키미디어 공용)',
@@ -365,7 +450,7 @@ const PQ = [
 /* 복습 퀴즈 ② 글 문제 — 매 판 1문제 */
 const TQ = [
   { q: '조선 수군의 주력 전함 판옥선의 바닥 모양은?', a: '평평하다(평저선)', w: ['뾰족하다(첨저선)'],
-    exp: '판옥선은 바닥이 평평해 제자리에서 방향을 빨리 바꿀 수 있었습니다. 그래서 배를 돌려 옆면에 줄지어 놓인 총통을 한꺼번에 쏠 수 있었지요. 게임 속 판옥선도 몸을 돌려 왼쪽 옆면(좌현)으로 일제히 포를 쏩니다.' },
+    exp: '판옥선은 바닥이 평평해 제자리에서 방향을 빨리 바꿀 수 있었습니다. 그래서 배를 돌려 옆면에 줄지어 놓인 총통을 한꺼번에 쏠 수 있었지요. 게임 속 판옥선도 몸을 돌려 왼쪽 옆면(좌현)과 오른쪽 옆면(우현)으로 번갈아 포를 쏩니다.' },
   { q: '임진왜란 때 일본 수군이 주로 쓴 전법은?', a: '배를 붙이고 올라타 싸우기', w: ['멀리서 화포 쏘기'],
     exp: '일본 수군은 배를 붙인 뒤 올라타 칼과 조총으로 싸우는 등선 육박전에 강했습니다. 조선 수군은 거리를 두고 총통(화포)으로 공격해 이 장점을 막았습니다.' },
   { q: '한산도 대첩이 일어난 해는?', a: '1592년', w: ['1597년'],
@@ -414,13 +499,14 @@ ${txt(130.75, 33.68, '일본', 34, '#5a4a30', 0, 0, 'middle')}
 
 /* ============ 소리 (Web Audio로 직접 합성) ============ */
 const Snd = (() => {
-  let ac = null, master = null, music = null, nb = null, muted = false, lastBoom = 0, drone = null;
+  let ac = null, master = null, music = null, nb = null, muted = false, lastBoom = 0, drone = null, demo = false;
+  const vol = () => (muted || demo) ? 0 : 0.9;
   function init() {
     if (ac) { if (ac.state === 'suspended') ac.resume(); return; }
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     try { ac = new AC(); } catch (e) { ac = null; return; }
-    master = ac.createGain(); master.gain.value = muted ? 0 : 0.9;
+    master = ac.createGain(); master.gain.value = vol();
     const comp = ac.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 5;
     master.connect(comp); comp.connect(ac.destination);
     // 잔향(넓은 바다 위에 울리는 느낌): 직접 만든 임펄스 응답
@@ -501,7 +587,9 @@ const Snd = (() => {
   const Dm = [146.83, 220, 293.66, 349.23];
   return {
     init,
-    toggle() { muted = !muted; if (master) master.gain.value = muted ? 0 : 0.9; return muted; },
+    toggle() { muted = !muted; if (master) master.gain.value = vol(); return muted; },
+    setDemo(on) { demo = on; if (master) master.gain.value = vol(); },
+    signal() { for (let i = 0; i < 6; i++) this.drum(i % 3 === 0, i * 0.15); this.taiko(true, 0.95); },
     cannon(at = 0, v = 1) {
       noise({ at, f0: 1300, f1: 90, dur: 0.5, gain: 0.5 * v });
       tone({ at, f0: 150, f1: 30, dur: 0.6, gain: 0.8 * v });
@@ -685,19 +773,27 @@ function newGame() {
     cd: 0, tg: TURTLE_NEED, turtle: null, combo: 0, comboT: 0, shake: 0, flash: 0, showRange: 0,
     wave: -1, wq: [], wt: 0, waveGap: 0, beat: 0, beatN: 0, drag: null, introStep: 0, bossRef: null, endT: 0,
     glows: [], firstFire: false, lb: 0, lbT: 1, zoom: 0,
+    // 2판: 유인·학익진·총통·신호·장계 기록
+    lureY: H * 0.19, hold: false, chaseSpd: 0, good: 0, close: 0, susp: 0, hitCd: 0, lurePct: 0, lureZone: 'good',
+    formT: 0, formQ: 0, stroke: null, strokeId: null, lastStroke: null, strokeFade: 0, aiPts: null,
+    gun: 'small', cdL: 0, cdR: 0, side: 'L', sig: 0, sigCd: 0, flagT: 0,
+    retreats: 0, farKills: 0, boards: 0, shotsBig: 0, shotsSmall: 0, bossBeat: false, flees: [], dangerTip: false,
+    rec: [], recK: [], recT: 0, demo: false,
   };
-  const decoy = [4, 5, 6, 7];
+  let nd = 0;
   for (let i = 0; i < FLEET; i++) {
-    const s = slot(i), k = decoy.indexOf(i);
-    const sh = { x: 0, y: 0, tx: 0, ty: 0, slot: s, auto: true, ang: -Math.PI / 2, hp: 3, alive: true, r: 20 * U, recoil: 0, flash: 0, ph: Math.random() * TAU, decoy: k >= 0, aim: 0, aimT: 0 };
-    if (k >= 0) { sh.x = W / 2 + (k - 1.5) * 34 * U; sh.y = H * (0.1 + (k % 2) * 0.07); sh.ang = Math.PI / 2; }
-    else { const j = i < 4 ? i : i - 4; sh.x = W / 2 + (j - 3.5) * Math.min(W * 0.1, 86 * U); sh.y = H * 0.88; }
+    const s = slot(i), k = DECOY.indexOf(i);
+    const sh = { x: 0, y: 0, tx: 0, ty: 0, slot: s, auto: true, ang: -Math.PI / 2, hp: 3, alive: true, r: 20 * U, recoil: 0, flash: 0, ph: Math.random() * TAU, decoy: k >= 0, k, aim: 0, aimT: 0, side: 'L', repair: 0 };
+    if (k >= 0) { const o = decoyOff(k); sh.x = W / 2 + o.dx; sh.y = G.lureY + o.dy; sh.ang = Math.PI / 2; }
+    else { sh.x = W / 2 + (nd - 2.5) * Math.min(W * 0.13, 100 * U); sh.y = H * 0.88; nd++; }
     sh.tx = sh.x; sh.ty = sh.y;
     G.ships.push(sh);
   }
   G.turtle = { x: W / 2, y: H - 62 * U, sx: 0, sy: 0, ex: 0, ey: 0, phase: 'standby', ang: -Math.PI / 2, fireT: 0, r: 30 * U, bossCd: 0 };
+  $('gunTxt').textContent = GUNS.small.name;
   syncHud(true);
 }
+function decoyOff(k) { return { dx: ((k % 3) - 1) * 38 * U, dy: Math.floor(k / 3) * 36 * U }; }
 
 /* ============ HUD ============ */
 const hud = { kill: -1, score: -1, brk: -1 };
@@ -743,20 +839,24 @@ function muzzle(x, y, ang) {
 }
 // 판옥선 좌현(왼쪽 옆면)의 포구 위치: 배 좌표에서 -y 쪽
 const PORTS = [-11.8, -5.6, 0.6, 6.8, 13];
-function portPos(s, i) {
-  const lx = PORTS[i] * U, ly = -16 * U, c = Math.cos(s.ang), sn = Math.sin(s.ang);
+function portPos(s, i, side) {   // side 'L' 좌현(-y) / 'R' 우현(+y)
+  const lx = PORTS[i] * U, ly = (side === 'R' ? 16 : -16) * U, c = Math.cos(s.ang), sn = Math.sin(s.ang);
   return { x: s.x + c * lx - sn * ly, y: s.y + sn * lx + c * ly };
 }
+const portDir = (s, side) => s.ang + (side === 'R' ? Math.PI / 2 : -Math.PI / 2);
 function floater(x, y, text, col, size = 20) { G.floats.push({ x, y, text, col, size, life: 0 }); }
 
 /* ============ 전투 로직 ============ */
 function aliveShips() { return G.ships.filter(s => s.alive); }
-function range() { return 310 * U; }
+function range() { return 310 * U * GUNS[G.gun].rng; }
 
 function fire() {
   if (!G || G.state !== 'battle') return;
   if (G.cd > 0) return;
-  const R = range(); let n = 0;
+  // 한쪽 옆면(현)의 총통을 장전하는 동안 배를 돌려 반대쪽 옆면으로 쏜다
+  const side = G.cdL <= 0 && G.cdR <= 0 ? G.side : G.cdL <= 0 ? 'L' : G.cdR <= 0 ? 'R' : null;
+  if (!side) { Snd.dry(); G.cd = 0.25; return; }
+  const gun = GUNS[G.gun], R = range(), sg = side === 'R' ? -1 : 1; let n = 0;
   for (const e of G.enemies) e.pend = 0;
   for (const s of G.ships) {
     if (!s.alive) continue;
@@ -769,38 +869,174 @@ function fire() {
     }
     const tg = bestE || anyE;
     if (!tg) continue;
-    tg.pend += 2; n++;
-    // 평저선인 판옥선이 제자리에서 몸을 돌려 좌현을 적에게 향한 뒤, 옆면의 총통을 차례로 쏜다
-    s.aim = Math.atan2(tg.y - s.y, tg.x - s.x) + Math.PI / 2; s.aimT = 1.7; s.fired = true;
+    tg.pend += 2 * gun.dmg; n++;
+    // 평저선인 판옥선이 제자리에서 몸을 돌려 옆면을 적에게 향한 뒤, 옆면의 총통을 차례로 쏜다
+    s.aim = Math.atan2(tg.y - s.y, tg.x - s.x) + sg * Math.PI / 2; s.aimT = 1.7; s.fired = true; s.side = side;
     const d0 = 0.3 + Math.random() * 0.08;
-    G.queue.push({ t: G.time + d0, s, e: tg, port: 1, real: true });
-    G.queue.push({ t: G.time + d0 + 0.14, s, e: tg, port: 3, real: true });
-    for (const pi of [0, 2, 4]) G.queue.push({ t: G.time + d0 + rand(0.03, 0.24), s, e: tg, port: pi, real: false });
+    G.queue.push({ t: G.time + d0, s, e: tg, port: 1, real: true, side, dmg: gun.dmg, err: gun.err });
+    G.queue.push({ t: G.time + d0 + 0.14, s, e: tg, port: 3, real: true, side, dmg: gun.dmg, err: gun.err });
+    for (const pi of [0, 2, 4]) G.queue.push({ t: G.time + d0 + rand(0.03, 0.24), s, e: tg, port: pi, real: false, side });
   }
   if (n) {
-    G.cd = FIRE_CD; Snd.salvo(n, 0.3); G.shake = Math.max(G.shake, 4 * U);
+    if (side === 'L') G.cdL = gun.cd; else G.cdR = gun.cd;
+    G.side = side === 'L' ? 'R' : 'L'; G.cd = 0.35;
+    if (G.gun === 'big') G.shotsBig++; else G.shotsSmall++;
+    Snd.salvo(G.gun === 'big' ? n + 4 : n, 0.3); G.shake = Math.max(G.shake, (G.gun === 'big' ? 6 : 4) * U);
     if (!G.firstFire) { G.firstFire = true; cutin(); }
   }
   else { G.cd = 0.3; G.showRange = 1; Snd.dry(); if (G.time - (G.dryT || -9) > 5) { G.dryT = G.time; hint('사거리 안에 적이 없습니다 — 점선 안으로 들어오면 발사!'); } }
 }
-function launchShot(s, e, dmg = 1, port = 2) {
-  const sp = 640 * U, o = portPos(s, port);
+function launchShot(s, e, dmg = 1, port = 2, side = 'L', errK = 1) {
+  const sp = 640 * U, o = portPos(s, port, side);
   let tx = e.x, ty = e.y;
   if (e.alive) { const t = hyp(e.x - o.x, e.y - o.y) / sp; tx = e.x + (e.vx || 0) * t; ty = e.y + (e.vy || 0) * t; }
-  const d0 = hyp(tx - o.x, ty - o.y) || 1, err = 9 * U + d0 * 0.06;
+  const d0 = hyp(tx - o.x, ty - o.y) || 1, err = (9 * U + d0 * 0.06) * errK;
   tx += rand(-err, err); ty += rand(-err, err);
   const a = Math.atan2(ty - o.y, tx - o.x);
-  G.shots.push({ x: o.x, y: o.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, dist: 0, max: Math.min(range() * 1.15, d0 + 60 * U), tot: d0, dmg });
-  muzzle(o.x, o.y, s.ang - Math.PI / 2);
+  G.shots.push({ x: o.x, y: o.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, dist: 0, max: Math.min(range() * 1.15, d0 + 60 * U), tot: d0, dmg, big: dmg > 1 });
+  muzzle(o.x, o.y, portDir(s, side));
   s.recoil = 1;
 }
-function portFlash(s, port) { const o = portPos(s, port); muzzle(o.x, o.y, s.ang - Math.PI / 2); s.recoil = Math.max(s.recoil, 0.7); }
+function portFlash(s, port, side) { const o = portPos(s, port, side); muzzle(o.x, o.y, portDir(s, side)); s.recoil = Math.max(s.recoil, 0.7); }
+
+function switchGun() {
+  if (!G || G.state !== 'battle') return;
+  G.gun = G.gun === 'small' ? 'big' : 'small';
+  const g = GUNS[G.gun]; $('gunTxt').textContent = g.name;
+  Snd.click(); hint('🎯 ' + g.name + ' — ' + g.desc, 2400); G.showRange = 1;
+}
+/* 북·깃발 신호: 날개를 오므려 적을 에워싼다(잠시 뒤 제자리로) */
+function signal() {
+  if (!G || G.state !== 'battle') return;
+  if (G.sigCd > 0) { Snd.dry(); return; }
+  G.sigCd = SIG_CD; G.sig = 6; G.flagT = 2.4;
+  let cx = W / 2, cy = H * 0.42, n = 0, sx = 0, sy = 0;
+  for (const e of G.enemies) if (e.y > 0) { sx += e.x; sy += e.y; n++; }
+  if (n) { cx = sx / n; cy = clamp(sy / n, H * 0.3, H * 0.55); }
+  for (const s of G.ships) {
+    if (!s.alive) continue;
+    const o = { x: s.slot.x + (cx - s.slot.x) * 0.3, y: s.slot.y + (cy - s.slot.y) * 0.3 };
+    seaClamp(o, s.r); s.auto = true; s.tx = o.x; s.ty = Math.max(o.y, H * 0.3);
+  }
+  G.drag = null;
+  Snd.signal();
+  banner('북 신호!', '깃발을 올려라 — 날개를 오므려 적을 에워싸라', 1700);
+}
+
+/* ===== 유인 작전: 너무 가깝지도 멀지도 않게 적을 끌어낸다 ===== */
+function showCards(on) { $('fleetCards').classList.toggle('hidden', !on); }
+function startLure() {
+  if (G.state !== 'intro') return;
+  showCards(false);
+  G.state = 'lure'; G.t = 0; G.lbT = 0; G.introStep = 9;
+  banner('유인 작전', '판옥선 6척이 달아나는 척, 적을 넓은 바다로 끌어낸다', 2400);
+  $('lureBox').classList.remove('hidden');
+  hint('👆 화면을 누르고 있으면 물러나고, 떼면 멈춰요', 4200);
+  G.wave = 0; $('waveTxt').textContent = '유인 작전 · 견내량';
+  const list = WAVES[0].list.slice();
+  for (let i = 0; i < 7; i++) {
+    spawn(list.shift());
+    const e = G.enemies[G.enemies.length - 1];
+    e.x = W / 2 + ((i % 3) - 1) * 32 * U + rand(-6, 6) * U; e.y = H * 0.035 - Math.floor(i / 3) * 30 * U; e.chase = true; e.runner = false;
+  }
+  G.wq = list;
+}
+const LURE_END = 0.5, LURE_FRONT = 0.3, NEAR = 0.09, FAR = 0.22;
+function updateLure(dt) {
+  const maxed = G.lureY >= H * LURE_END - 1;
+  G.lureY = Math.min(H * LURE_END, G.lureY + (G.hold ? 0.1 : 0) * H * dt);
+  let front = -1e9;
+  for (const e of G.enemies) if (e.chase) front = Math.max(front, e.y + e.r);
+  const g = (G.lureY - front) / H;
+  let zone = 'good';
+  if (g < NEAR) zone = 'close'; else if (g > FAR && !maxed) zone = 'far';
+  G.chaseSpd = (zone === 'far' ? 0.024 : 0.056) * H;
+  if (zone === 'close') {
+    G.close += dt; G.hitCd -= dt;
+    if (g < 0.045 && G.hitCd <= 0) {   // 따라잡혔다: 맨 뒤 판옥선이 공격받음
+      G.hitCd = 1.4;
+      const d = G.ships.filter(s => s.decoy && s.alive).sort((a, b) => a.y - b.y)[0];
+      if (d) hurtShip(d, 1, '적에게 따라잡혔다!');
+    }
+  } else if (zone === 'far') G.susp += dt;
+  else if (!maxed) G.good += dt;
+  G.lureZone = zone;
+  for (const s of G.ships) if (s.decoy && s.alive) { const o = decoyOff(s.k); s.auto = true; s.tx = W / 2 + o.dx; s.ty = G.lureY + o.dy; }
+  const pct = Math.round(100 * G.good / Math.max(0.001, G.good + G.close + G.susp));
+  $('lureMark').style.left = clamp(g / 0.32, 0, 1) * 100 + '%';
+  $('lureMsg').textContent = zone === 'close' ? '너무 가까워요! 따라잡혀요 — 눌러서 물러나세요'
+    : zone === 'far' ? '너무 멀어요! 적이 의심해 멈칫해요 — 손을 떼세요'
+    : maxed ? '한산도 앞바다 도착! 적이 따라 나오기를 기다려요' : '좋아요! 이 거리를 지키며 끌어내세요 · 성공률 ' + pct + '%';
+  if ((maxed && front >= H * LURE_FRONT) || G.t > 24) finishLure();
+}
+function finishLure() {
+  G.lurePct = Math.round(100 * G.good / Math.max(0.001, G.good + G.close + G.susp));
+  for (const e of G.enemies) e.chase = false;
+  $('lureBox').classList.add('hidden'); G.hold = false;
+  G.state = 'formation'; G.formT = 0; G.stroke = null; G.aiPts = null;
+  banner('유인 성공률 ' + G.lurePct + '%', '이제 학익진을 펼쳐라!', 1900);
+  Snd.horn();
+  hint('✍️ 손가락으로 학의 날개(∪ 모양)를 크게 그리세요', 9000);
+  $('waveTxt').textContent = '학익진 · 한산도 앞바다';
+}
+/* ===== 학익진 그리기 ===== */
+function resample(pts, n) {
+  const L = [0];
+  for (let i = 1; i < pts.length; i++) L.push(L[i - 1] + hyp(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+  const tot = L[L.length - 1], out = []; let j = 0;
+  for (let k = 0; k < n; k++) {
+    const d = tot * k / (n - 1);
+    while (j < L.length - 2 && L[j + 1] < d) j++;
+    const seg = (L[j + 1] - L[j]) || 1, f = clamp((d - L[j]) / seg, 0, 1), a = pts[j], b = pts[Math.min(j + 1, pts.length - 1)];
+    out.push({ x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f });
+  }
+  return { out, tot };
+}
+function finishFormation(stroke) {
+  if (G.state !== 'formation') return;
+  const rx = Math.min(W * 0.36, H * 0.62), ry = H * 0.19;
+  let q = 0, pts = null, msg = '';
+  if (stroke && stroke.length > 4) {
+    const { out, tot } = resample(stroke, FLEET);
+    const xs = out.map(p => p.x), width = Math.max(...xs) - Math.min(...xs);
+    const ends = (out[0].y + out[FLEET - 1].y) / 2, mid = Math.max(...out.slice(3, FLEET - 3).map(p => p.y));
+    const depth = mid - ends;
+    if (tot > rx * 0.6 && depth > ry * 0.15) {
+      const wq = clamp(width / (rx * 2), 0, 1), dq = clamp(depth / ry, 0, 2), dS = dq <= 1 ? dq : Math.max(0, 2 - dq);
+      const sym = 1 - clamp(Math.abs(out[0].y - out[FLEET - 1].y) / ry, 0, 1) * 0.5;
+      q = Math.round(100 * clamp(0.45 * wq + 0.35 * dS + 0.2 * sym + 0.04, 0, 1));
+      pts = out;
+    } else msg = '학의 날개(∪) 모양이 아니에요';
+  } else msg = '그리지 않았어요';
+  if (!pts) { q = 40; pts = G.ships.map((_, i) => slot(i)); }
+  G.formQ = q;
+  const sp = pts.map(p => { const o = { x: clamp(p.x, 30 * U, W - 30 * U), y: clamp(p.y, H * 0.36, H * 0.9) }; seaClamp(o, 22 * U); return o; }).sort((a, b) => a.x - b.x);
+  G.ships.slice().sort((a, b) => a.x - b.x).forEach((s, i) => { s.slot = sp[i]; s.tx = sp[i].x; s.ty = sp[i].y; s.auto = true; });
+  if (stroke && stroke.length > 1) { G.lastStroke = stroke; G.strokeFade = 1.6; }
+  G.stroke = null;
+  G.state = 'battle'; G.lbT = 0; $('hud').classList.remove('pre'); $('hint').classList.remove('show');
+  banner('학익진 완성도 ' + q + '%', msg ? msg + ' — 기본 학익진으로 펼칩니다' : q >= 80 ? '훌륭하다! 학이 날개를 펴듯 적을 에워쌌다' : '학이 날개를 펴듯 적을 에워쌌다!', 2300);
+  Snd.horn(); Snd.stab(false);
+  $('waveTxt').textContent = WAVES[0].name + ' (1/' + WAVES.length + ')';
+  G.wt = 0.8; G.waveGap = 0;
+  setTimeout(() => { if (G && G.state === 'battle' && !G.firstFire) hint('💥 사격하면 좌현·우현을 번갈아 쏴요 · 👆 판옥선을 끌어 옮기기', 4200); }, 2400);
+}
 function angDiff(a, b) { let d = a - b; while (d > Math.PI) d -= TAU; while (d < -Math.PI) d += TAU; return d; }
 
 function killEnemy(e, how) {
   if (!e.alive) return;
-  e.alive = false; G.kills++;
+  e.alive = false;
   const T = TYPES[e.type];
+  if (e.type === 'boss') {   // 실제로 와키자카는 겨우 달아났다 — 대장선은 부서진 채 달아난다
+    G.bossBeat = true; G.score += T.score; G.bossRef = null;
+    floater(e.x, e.y, '+' + T.score, '#ffe08a', 30);
+    explode(e.x, e.y, 1.3, true); Snd.boom(true); G.shake = Math.max(G.shake, 22 * U); G.flash = 0.8;
+    banner('적장의 대장선을 물리쳤다!', '와키자카 야스하루는 겨우 달아났다', 2800); slow(1600, 0.28); G.zoom = 0.06; Snd.stab(false);
+    G.flees.push({ x: e.x, y: e.y, ang: e.ang, r: e.r, t: 0 });
+    G.recK.push([e.x / W, e.y / H, 1]);
+    return;
+  }
+  G.kills++;
   let pts = T.score;
   if (how === 'board') pts = Math.round(pts / 2);
   else {
@@ -808,24 +1044,28 @@ function killEnemy(e, how) {
     pts = Math.round(pts * (1 + Math.min(G.combo - 1, 20) * 0.1) / 10) * 10;
     if (G.combo >= 3 && G.combo % 1 === 0) { Snd.ding(G.combo - 2); floater(e.x, e.y - 26 * U, G.combo + '연속 격파!', '#ffe08a', 17 + Math.min(G.combo, 10)); }
     if (G.turtle.phase === 'standby' && G.tg < TURTLE_NEED) { G.tg++; if (G.tg >= TURTLE_NEED) { Snd.ready(); hint('🐢 거북선 돌격 준비 완료!'); } }
+    if (how === 'cannon') {   // 거리를 두고 총통으로 격파: 등선육박을 막은 보너스
+      let nd = 1e9; for (const s of G.ships) if (s.alive) nd = Math.min(nd, hyp(s.x - e.x, s.y - e.y));
+      if (nd > 175 * U) { G.farKills++; pts += 50; floater(e.x, e.y + 24 * U, '원거리 격파 +50', '#9fe6ff', 15); }
+    }
   }
   G.score += pts;
-  floater(e.x, e.y, '+' + pts, how === 'board' ? '#cfd8e3' : '#fff', e.type === 'boss' ? 30 : 18);
-  const big = e.type === 'atake' || e.type === 'boss';
-  explode(e.x, e.y, e.type === 'boss' ? 1.8 : big ? 1.25 : 0.85, big);
-  Snd.boom(big); G.shake = Math.max(G.shake, (e.type === 'boss' ? 22 : big ? 11 : 5) * U);
-  if (e.type === 'boss') { G.flash = 0.8; banner('적장의 대장선 격침!', '왜군의 진형이 무너진다', 2600); G.bossRef = null; slow(1600, 0.28); G.zoom = 0.06; Snd.stab(false); }
+  G.recK.push([e.x / W, e.y / H, 0]);
+  floater(e.x, e.y, '+' + pts, how === 'board' ? '#cfd8e3' : '#fff', 18);
+  const big = e.type === 'atake';
+  explode(e.x, e.y, big ? 1.25 : 0.85, big);
+  Snd.boom(big); G.shake = Math.max(G.shake, (big ? 11 : 5) * U);
   G.sinks.push({ x: e.x, y: e.y, ang: e.ang, type: e.type, r: e.r, t: 0 });
   G.wrecks.push({ x: e.x, y: e.y, r: e.r * 1.1, life: 7, max: 7 });
 }
-function hurtShip(s, dmg) {
-  s.hp -= dmg; s.flash = 1; Snd.crash(); G.shake = Math.max(G.shake, 9 * U);
+// 실제 한산도 대첩에서 조선 전선은 한 척도 잃지 않았다 → 게임에서도 침몰 없이 '수리하러 후퇴'
+function hurtShip(s, dmg, msg) {
+  s.hp -= dmg; s.flash = 1; Snd.crash(); G.shake = Math.max(G.shake, 9 * U); G.boards++;
   if (s.hp <= 0) {
-    s.alive = false; G.lost++;
-    explode(s.x, s.y, 1.4, true); Snd.boom(true);
-    floater(s.x, s.y - 20 * U, '판옥선 침몰!', '#ff9a8a', 20);
+    s.alive = false; s.repair = 12; G.retreats++;
+    floater(s.x, s.y - 20 * U, '크게 부서져 수리하러 후퇴!', '#ffb38a', 17);
     if (G.drag === s) G.drag = null;
-  } else floater(s.x, s.y - 20 * U, '적이 배에 올라탔다!', '#ffb38a', 15);
+  } else floater(s.x, s.y - 20 * U, msg || '적이 배를 붙이려 한다!', '#ffb38a', 15);
 }
 
 function startWave(i) {
@@ -878,15 +1118,27 @@ function update(dt) {
   const st = G.state;
 
   if (st === 'intro') {
-    if (G.introStep === 0) { G.introStep = 1; banner('1592년 7월, 견내량', '좁은 해협에 왜선 73척이 모여 있다', 2000); Snd.drum(true); Snd.drum(false, 0.4); }
-    if (G.t > 1.9 && G.introStep === 1) { G.introStep = 2; banner('유인 작전', '판옥선 몇 척이 달아나는 척, 적을 넓은 바다로 끌어낸다', 2300); for (const s of G.ships) if (s.decoy) { s.tx = s.slot.x; s.ty = s.slot.y; } }
-    if (G.t > 4.3 && G.introStep === 2) { G.introStep = 3; banner('학익진을 펼쳐라!', '학이 날개를 펴듯 적을 에워싼다', 2000); Snd.horn(); for (const s of G.ships) { s.tx = s.slot.x; s.ty = s.slot.y; } }
-    if (G.t > 6.4 && G.introStep === 3) { G.state = 'battle'; G.lbT = 0; startWave(0); hint('👆 판옥선을 끌어 옮길 수 있어요 · 💥 버튼으로 사격!', 3800); }
+    if (G.introStep === 0) { G.introStep = 1; banner('1592년 7월 8일(음력), 견내량', '좁은 해협에 왜선 73척이 모여 있다', 2600); Snd.drum(true); Snd.drum(false, 0.4); showCards(true); }
+    if (G.t > 5.6 && G.introStep === 1) startLure();
+  } else if (st === 'lure') updateLure(dt);
+  else if (st === 'formation') { G.formT += dt; if ((G.formT > 9 && !G.stroke) || G.formT > 15) finishFormation(G.stroke); }
+  G.strokeFade = Math.max(0, G.strokeFade - dt);
+  // 전투 기록(전투 지도 다시 보기용)
+  if (st === 'lure' || st === 'formation' || st === 'battle') {
+    G.recT -= dt;
+    if (G.recT <= 0 && G.rec.length < 600) { G.recT = 0.4; G.rec.push({ s: G.ships.filter(s => s.alive).map(s => [s.x / W, s.y / H]), e: G.enemies.map(e => [e.x / W, e.y / H, e.type === 'boss' ? 2 : e.max > 1 ? 1 : 0]), k: G.recK.length }); }
   }
 
   // 판옥선 이동
   for (const s of G.ships) {
-    if (!s.alive) continue;
+    if (!s.alive) {   // 수리하러 뒤로 물러난 배: 12초 뒤 다시 출전
+      if (s.repair > 0) {
+        s.repair -= dt; s.recoil = 0; s.flash = Math.max(0, s.flash - dt * 3);
+        s.y += (H + 50 * U - s.y) * Math.min(1, dt * 0.9); s.ang += angDiff(Math.PI / 2, s.ang) * Math.min(1, dt * 3);
+        if (s.repair <= 0) { s.alive = true; s.hp = 3; s.auto = true; s.y = H + 30 * U; s.x = s.slot.x; s.tx = s.slot.x; s.ty = s.slot.y; floater(s.slot.x, H - 70 * U, '수리 완료! 다시 출전', '#7dffb0', 16); }
+      }
+      continue;
+    }
     s.recoil = Math.max(0, s.recoil - dt * 3); s.flash = Math.max(0, s.flash - dt * 3); s.aimT = Math.max(0, s.aimT - dt);
     let want = null, rate = 3;
     if (s.auto) {
@@ -903,7 +1155,9 @@ function update(dt) {
   }
 
   if (st === 'battle') {
-    G.cd = Math.max(0, G.cd - dt);
+    G.cd = Math.max(0, G.cd - dt); G.cdL = Math.max(0, G.cdL - dt); G.cdR = Math.max(0, G.cdR - dt);
+    G.sigCd = Math.max(0, G.sigCd - dt); G.flagT = Math.max(0, G.flagT - dt);
+    if (G.sig > 0) { G.sig -= dt; if (G.sig <= 0) for (const s of G.ships) if (s.alive && s.auto) { s.tx = s.slot.x; s.ty = s.slot.y; } }
     G.comboT -= dt; if (G.comboT <= 0) G.combo = 0;
     // 북소리(전투 리듬)
     G.beat -= dt;
@@ -921,7 +1175,9 @@ function update(dt) {
       if (G.enemies.length <= 3 || G.waveGap > 9) startWave(G.wave + 1);
     }
     // 예약된 포탄 발사
-    for (let i = G.queue.length - 1; i >= 0; i--) { const q = G.queue[i]; if (q.t <= G.time) { G.queue.splice(i, 1); if (q.s.alive !== false) { if (q.real) launchShot(q.s, q.e, 1, q.port); else portFlash(q.s, q.port); } } }
+    for (let i = G.queue.length - 1; i >= 0; i--) { const q = G.queue[i]; if (q.t <= G.time) { G.queue.splice(i, 1); if (q.s.alive !== false) { if (q.real) launchShot(q.s, q.e, q.dmg, q.port, q.side, q.err); else portFlash(q.s, q.port, q.side); } } }
+    // 등선육박 경고(처음 한 번 설명)
+    if (!G.dangerTip) for (const s of aliveShips()) { for (const e of G.enemies) if (hyp(e.x - s.x, e.y - s.y) < e.r + s.r + 50 * U) { G.dangerTip = true; hint('⚠ 빨간 테두리: 적이 배를 붙여 올라타려 해요 — 먼저 쏘거나 끌어서 피하세요', 3600); break; } if (G.dangerTip) break; }
   }
 
   // 적선
@@ -946,12 +1202,15 @@ function update(dt) {
     e.ang += clamp(angDiff(want, e.ang), -1.6 * dt, 1.6 * dt);
     let slow = 1;
     for (const w of G.wrecks) if (hyp(w.x - e.x, w.y - e.y) < w.r + e.r * 0.7) { slow = e.type === 'boss' ? 0.8 : 0.4; break; }
+    if (st === 'lure' && e.chase) slow = G.chaseSpd / e.spd;          // 유인 함대를 쫓는 속도
+    else if (st === 'formation') slow *= 0.25;                         // 진형을 짜는 동안은 천천히
+    else if (st === 'intro') slow = 0;
     e.vx = Math.cos(e.ang) * e.spd * slow; e.vy = Math.sin(e.ang) * e.spd * slow;
     e.x += e.vx * dt; e.y += e.vy * dt;
     seaClamp(e, e.r);
     if (Math.random() < dt * 9) G.foam.push({ x: e.x - Math.cos(e.ang) * e.r, y: e.y - Math.sin(e.ang) * e.r, life: 0, max: 0.9, r: e.r * rand(0.25, 0.45) });
     // 조선 판옥선과 충돌(일본군의 등선육박 전술)
-    for (const s of ships) {
+    if (st === 'battle') for (const s of ships) {
       if (!s.alive) continue;
       if (hyp(s.x - e.x, s.y - e.y) < e.r + s.r * 0.8) {
         if (e.type === 'boss') { if (e.cd <= 0) { e.cd = 1.2; hurtShip(s, 3); e.hp -= 4; e.flash = 1; if (e.hp <= 0) killEnemy(e, 'cannon'); } }
@@ -1011,6 +1270,14 @@ function update(dt) {
   }
   G.shots = G.shots.filter(s => !s.dead);
   G.enemies = G.enemies.filter(e => e.alive);
+  // 달아나는 적장의 대장선
+  for (const f of G.flees) {
+    f.t += dt; f.ang += angDiff(-Math.PI / 2, f.ang) * Math.min(1, dt * 1.4);
+    const sp = H * 0.17 * Math.min(1, f.t * 0.8);
+    f.x += Math.cos(f.ang) * sp * dt; f.y += Math.sin(f.ang) * sp * dt; f.x = clamp(f.x, shoreL(Math.max(0, f.y)) + f.r, shoreR(Math.max(0, f.y)) - f.r);
+    if (Math.random() < dt * 18) part({ x: f.x + rand(-0.4, 0.4) * f.r, y: f.y, vx: rand(-10, 10) * U, vy: rand(-40, -15) * U, life: 0, max: rand(1.5, 2.6), size: rand(8, 14) * U, t: 'smoke', dark: true });
+  }
+  G.flees = G.flees.filter(f => f.y > -90 * U && f.t < 14);
 
   // 입자 등
   for (const p of G.parts) { p.life += dt; if (p.t === 'smoke') p.vx += WIND * U * dt; else if (p.t === 'ember') p.vy -= 30 * U * dt; p.x += p.vx * dt; p.y += p.vy * dt; const dr = p.t === 'smoke' ? 0.965 : 0.9; p.vx *= Math.pow(dr, dt * 60); p.vy *= Math.pow(dr, dt * 60); if (p.vr) p.rot += p.vr * dt; }
@@ -1033,7 +1300,7 @@ function update(dt) {
     const win = !lose && G.wave === WAVES.length - 1 && G.wq.length === 0 && G.enemies.length === 0;
     if (lose || win) { G.state = 'ending'; G.endT = lose ? 1.6 : 2.2; G.win = win; G.lbT = 1; Snd.droneOff();
       if (win) { banner('대 승 리', '한산도 앞바다를 지켜 냈다!', 2200); Snd.win(); slow(1300, 0.35); G.zoom = 0.04; } else { banner('방어선 붕괴', '', 1600); Snd.lose(); } }
-    if (performance.now() - lastInput > 80000 && !window.__noIdle) goTitle();
+    if (performance.now() - lastInput > 80000 && !window.__noIdle && !G.demo) goTitle();
   } else if (st === 'ending') {
     G.endT -= dt;
     if (G.endT <= 0) showResult();
@@ -1079,9 +1346,9 @@ function drawPanok(s, t) {
   ctx.fillStyle = '#dcb87a'; ctx.fillRect(-16, -9.5, 30, 19);
   ctx.strokeStyle = 'rgba(90,60,25,.45)'; ctx.lineWidth = 0.8; for (let x = -11; x < 14; x += 5) { ctx.beginPath(); ctx.moveTo(x, -9.5); ctx.lineTo(x, 9.5); ctx.stroke(); }
   ctx.fillStyle = '#2b1a0c'; for (let x = -13; x <= 12; x += 6.2) { ctx.fillRect(x, -12.6, 2.4, 2.4); ctx.fillRect(x, 10.2, 2.4, 2.4); }
-  if (s.aimT > 0) {   // 좌현 포구로 내민 총통
+  if (s.aimT > 0) {   // 포구로 내민 총통(좌현 또는 우현)
     const out = Math.min(1, s.aimT * 3) * (1 - s.recoil * 0.6);
-    ctx.fillStyle = '#26262b'; for (const x of PORTS) ctx.fillRect(x - 2.4, -13 - 4.5 * out, 2.2, 4.5 * out);
+    ctx.fillStyle = '#26262b'; for (const x of PORTS) { if (s.side === 'R') ctx.fillRect(x - 2.4, 13, 2.2, 4.5 * out); else ctx.fillRect(x - 2.4, -13 - 4.5 * out, 2.2, 4.5 * out); }
   }
   ctx.fillStyle = '#7e2418'; ctx.fillRect(-8, -7, 14, 14);
   ctx.fillStyle = '#b9483a'; ctx.fillRect(-6, -5, 10, 10);
@@ -1167,13 +1434,14 @@ function draw(t) {
 
   // 사거리
   const R = range();
-  for (const s of G.ships) {
+  if (G.state === 'battle' || G.state === 'ending') for (const s of G.ships) {
     if (!s.alive) continue;
     const a = G.drag === s ? 0.5 : 0.03 + G.showRange * 0.4;
     ctx.strokeStyle = `rgba(255,236,170,${a})`; ctx.lineWidth = (G.drag === s ? 2.5 : 1.5) * U; ctx.setLineDash([8 * U, 12 * U]);
     ctx.beginPath(); ctx.arc(s.x, s.y, R, 0, TAU); ctx.stroke();
   }
   ctx.setLineDash([]);
+  drawGuides(t);
 
   // 물거품 · 잔해 · 물결
   for (const f of G.foam) { const p = f.life / f.max; ctx.fillStyle = `rgba(230,248,255,${0.4 * (1 - p)})`; ctx.beginPath(); ctx.arc(f.x, f.y, f.r * (1 + p * 1.6), 0, TAU); ctx.fill(); }
@@ -1187,7 +1455,25 @@ function draw(t) {
   for (const s of G.sinks) drawSink(s, t);
 
   for (const e of G.enemies) drawEnemy(e, t);
+  for (const f of G.flees) {   // 달아나는 적장의 대장선
+    const k = f.r / BASE_R.boss;
+    ctx.save(); ctx.globalAlpha = clamp(3 - f.t * 0.25, 0.3, 1); ctx.translate(f.x, f.y); ctx.rotate(f.ang); ctx.scale(k, k); drawEnemyShape('boss', t, 0, 0); ctx.restore();
+    ctx.font = `800 ${13 * U}px sans-serif`; ctx.textAlign = 'center'; ctx.lineWidth = 3 * U; ctx.strokeStyle = 'rgba(0,0,0,.7)'; ctx.fillStyle = '#ffe08a';
+    ctx.strokeText('달아나는 적장', f.x, f.y - f.r - 10 * U); ctx.fillText('달아나는 적장', f.x, f.y - f.r - 10 * U);
+  }
+  for (const s of G.ships) if (!s.alive && s.repair > 0 && s.y < H + 30 * U) { ctx.globalAlpha = 0.5; drawPanok(s, t); ctx.globalAlpha = 1; }
+  if (G.state === 'battle') for (const s of G.ships) {   // 등선육박 위험 테두리
+    if (!s.alive) continue;
+    let nd = 1e9; for (const e of G.enemies) nd = Math.min(nd, hyp(e.x - s.x, e.y - s.y) - e.r - s.r);
+    if (nd < 55 * U) { const k = 1 - Math.max(0, nd) / (55 * U); ctx.strokeStyle = `rgba(255,70,50,${0.25 + 0.55 * k * (0.6 + 0.4 * Math.sin(t * 12))})`; ctx.lineWidth = 3 * U; ctx.beginPath(); ctx.arc(s.x, s.y, s.r + 12 * U, 0, TAU); ctx.stroke(); }
+  }
   for (const s of G.ships) if (s.alive && s !== G.drag) drawPanok(s, t);
+  if (G.flagT > 0 || G.sig > 0) for (const s of G.ships) {   // 북·깃발 신호: 배마다 깃발
+    if (!s.alive) continue;
+    const x = s.x, y = s.y - 8 * U, w = Math.sin(t * 9 + s.ph) * 3 * U;
+    ctx.strokeStyle = '#3a2410'; ctx.lineWidth = 2 * U; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 30 * U); ctx.stroke();
+    ctx.fillStyle = '#f6c945'; ctx.beginPath(); ctx.moveTo(x, y - 30 * U); ctx.quadraticCurveTo(x + 9 * U, y - 33 * U + w, x + 18 * U, y - 27 * U + w); ctx.lineTo(x + 18 * U, y - 17 * U + w); ctx.quadraticCurveTo(x + 9 * U, y - 22 * U + w, x, y - 18 * U); ctx.closePath(); ctx.fill();
+  }
   drawTurtle(G.turtle, t);
   if (G.drag && G.drag.alive) { ctx.save(); ctx.shadowColor = '#ffe08a'; ctx.shadowBlur = 18 * U; drawPanok(G.drag, t); ctx.restore(); }
 
@@ -1244,6 +1530,35 @@ function draw(t) {
     const h = H * 0.085 * G.lb; ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, h); ctx.fillRect(0, H - h, W, h);
   }
 }
+function guideText(txt, x, y, s, col) {
+  ctx.font = `800 ${s * U}px 'Malgun Gothic','Noto Sans KR',sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.lineWidth = 4 * U; ctx.strokeStyle = 'rgba(0,0,0,.6)'; ctx.strokeText(txt, x, y); ctx.fillStyle = col; ctx.fillText(txt, x, y);
+}
+function strokeLine(pts, a) {
+  if (!pts || pts.length < 2) return;
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  for (const [w, c] of [[16, `rgba(245,192,74,${0.25 * a})`], [6, `rgba(255,236,170,${0.95 * a})`]]) {
+    ctx.strokeStyle = c; ctx.lineWidth = w * U; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
+  }
+}
+function drawGuides(t) {
+  if (G.state === 'lure') {   // 유인 목표선
+    const y = H * LURE_END + 10 * U, x0 = shoreL(y) + 20 * U, x1 = shoreR(y) - 20 * U;
+    ctx.setLineDash([12 * U, 10 * U]); ctx.strokeStyle = `rgba(125,255,176,${0.4 + 0.2 * Math.sin(t * 4)})`; ctx.lineWidth = 2.5 * U;
+    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); ctx.setLineDash([]);
+    guideText('한산도 앞바다 — 여기까지 끌어내기', W / 2, y + 22 * U, 15, '#a8ffcb');
+  }
+  if (G.state === 'formation') {   // 따라 그릴 학익진 안내선
+    ctx.setLineDash([10 * U, 12 * U]); ctx.strokeStyle = `rgba(255,236,170,${0.3 + 0.2 * Math.sin(t * 4)})`; ctx.lineWidth = 4 * U;
+    ctx.beginPath(); for (let i = 0; i < FLEET; i++) { const p = slot(i); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); } ctx.stroke(); ctx.setLineDash([]);
+    const L = slot(0), Rr = slot(FLEET - 1);
+    guideText('날개', L.x, L.y - 22 * U, 15, '#ffe9b0'); guideText('날개', Rr.x, Rr.y - 22 * U, 15, '#ffe9b0');
+    guideText('✍️ 점선을 따라 ∪ 모양으로 그리세요 · ' + Math.max(0, Math.ceil(9 - G.formT)) + '초', W / 2, H * 0.69, 18, '#ffe9b0');
+    strokeLine(G.stroke, 1);
+  }
+  if (G.strokeFade > 0) strokeLine(G.lastStroke, Math.min(1, G.strokeFade));
+}
 function drawFog(t) {
   const top = ctx.createLinearGradient(0, 0, 0, H * 0.42);   // 먼 바다는 안개에 흐려짐
   top.addColorStop(0, 'rgba(196,208,206,.30)'); top.addColorStop(1, 'rgba(196,208,206,0)');
@@ -1258,18 +1573,74 @@ function drawFog(t) {
 
 /* ============ 루프 ============ */
 let lastT = 0;
-const btnFire = $('btnFire'), btnTurtle = $('btnTurtle');
-let turtleState = '';
+const btnFire = $('btnFire'), btnTurtle = $('btnTurtle'), btnGun = $('btnGun'), btnSig = $('btnSig');
+let turtleState = '', sigTxt = '';
+
+/* ============ 자동 데모 플레이(대기 화면에서 25초 동안 입력이 없으면, 소리 없이) ============ */
+let demoHash = location.hash === '#demo', demoBlockUntil = 0;
+const AI = { t: 0, r: 0, doc: false };
+function startDemo() {
+  startGame(); G.demo = true; Snd.setDemo(true);
+  AI.t = 0; AI.r = 0; AI.doc = false;
+  $('demoTag').classList.remove('hidden');
+}
+function endDemo() {
+  if (!G || !G.demo) return;
+  G.demo = false; demoHash = false; Snd.setDemo(false);
+  $('demoTag').classList.add('hidden'); demoBlockUntil = performance.now() + 700;
+  goTitle();
+}
+function aiStep(dt) {
+  const st = G.state;
+  if (st === 'intro') { if (G.t > 3.4) startLure(); }
+  else if (st === 'lure') {
+    let front = -1e9; for (const e of G.enemies) if (e.chase) front = Math.max(front, e.y + e.r);
+    G.hold = (G.lureY - front) / H < 0.15;
+  } else if (st === 'formation') {
+    if (!G.aiPts) {
+      if (G.formT > 1.3 && !G.stroke) {
+        const rx = Math.min(W * 0.36, H * 0.62) * 0.96, ry = H * 0.19; G.aiPts = []; G.stroke = [];
+        for (let i = 0; i <= 44; i++) { const a = Math.PI * i / 44; G.aiPts.push({ x: W / 2 - Math.cos(a) * rx + rand(-3, 3) * U, y: H * 0.61 + Math.sin(a) * ry + rand(-3, 3) * U }); }
+      }
+    } else {
+      for (let k = 0; k < 2 && G.aiPts.length; k++) G.stroke.push(G.aiPts.shift());
+      if (!G.aiPts.length) { const s = G.stroke; G.aiPts = null; finishFormation(s); }
+    }
+  } else if (st === 'battle') {
+    AI.t -= dt;
+    const R = range(), act = G.enemies.filter(e => e.y > 0);
+    const inR = act.some(e => G.ships.some(s => s.alive && hyp(e.x - s.x, e.y - s.y) < R));
+    if (AI.t <= 0) {
+      AI.t = 0.6;
+      const wantBig = act.some(e => e.type === 'boss' || e.type === 'atake');
+      if ((G.gun === 'big') !== wantBig && G.cdL <= 0 && G.cdR <= 0) switchGun();
+    }
+    if (inR) fire();
+    if (G.tg >= TURTLE_NEED && G.turtle.phase === 'standby' && act.filter(e => e.y > H * 0.12).length >= 5) activateTurtle();
+    if (G.sigCd <= 0 && act.filter(e => e.y > H * 0.2).length >= 7) signal();
+  } else if (st === 'result') {
+    AI.r += dt;
+    if (AI.r > 6 && !AI.doc) { AI.doc = true; openDoc(); }
+    if (AI.r > 20) { if (demoHash) { G.demo = false; startDemo(); } else endDemo(); }
+  }
+}
 function frame(now) {
   const raw = Math.min(0.05, (now - lastT) / 1000 || 0); lastT = now;
   G.ts = G.ts || 1; G.ts += ((now < slowUntil ? slowScale : 1) - G.ts) * Math.min(1, raw * 10);   // 느린 화면(슬로 모션)
   const dt = raw * G.ts;
+  if (G.demo) aiStep(raw);
+  if (G.state === 'title' && now - lastInput > 25000 && !window.__noIdle) startDemo();
   if (G.state !== 'title' && G.state !== 'result') update(dt);
   else { G.time += dt; for (const p of G.parts) p.life += dt; }
   draw(now / 1000);
-  if (G.state === 'battle' || G.state === 'intro' || G.state === 'ending') {
-    btnFire.style.setProperty('--p', 1 - G.cd / FIRE_CD);
-    btnFire.classList.toggle('wait', G.cd > 0.05);
+  if (G.state !== 'title' && G.state !== 'result') {
+    const gun = GUNS[G.gun], mcd = Math.min(G.cdL, G.cdR);
+    btnFire.style.setProperty('--p', 1 - mcd / gun.cd);
+    btnFire.classList.toggle('wait', mcd > 0.05);
+    $('sideL').classList.toggle('on', G.cdL <= 0); $('sideR').classList.toggle('on', G.cdR <= 0);
+    btnSig.style.setProperty('--p', 1 - G.sigCd / SIG_CD); btnSig.classList.toggle('wait', G.sigCd > 0);
+    const ss = G.sigCd > 0 ? Math.ceil(G.sigCd) + '초' : '날개 오므리기';
+    if (ss !== sigTxt) { sigTxt = ss; $('sigSub').textContent = ss; }
     const tt = G.turtle, ready = G.tg >= TURTLE_NEED && tt.phase === 'standby';
     btnTurtle.style.setProperty('--p', tt.phase === 'standby' ? G.tg / TURTLE_NEED : 0);
     const stt = tt.phase !== 'standby' ? 'out' : ready ? 'ready' : 'charge' + G.tg;
@@ -1334,47 +1705,100 @@ function goTitle() {
   for (const s of G.ships) { s.x = s.tx = s.slot.x; s.y = s.ty = s.slot.y; }
   $('hud').classList.add('hidden'); $('result').classList.add('hidden'); $('title').classList.remove('hidden');
   $('cutin').classList.add('hidden'); $('hud').classList.remove('cine');
-  $('bestTxt').textContent = '실제 한산도 대첩: 왜선 73척 가운데 59척 격침·나포, 조선 수군 피해 0척';
+  $('lureBox').classList.add('hidden'); showCards(false); $('demoTag').classList.add('hidden');
+  $('bestTxt').textContent = '실제 한산도 대첩: 왜선 73척 가운데 59척 격침·나포, 조선 전선 손실 0척';
   renderToday();
-  resDeadline = 0; me = null;
+  resDeadline = 0; me = null; lastInput = performance.now();
 }
 function startGame() {
   Snd.init(); Snd.click(); Snd.droneOn(); Snd.intensity(0);
-  newGame(); turtleState = '';
-  $('title').classList.add('hidden'); $('result').classList.add('hidden'); $('hud').classList.remove('hidden');
+  newGame(); turtleState = ''; sigTxt = '';
+  $('title').classList.add('hidden'); $('result').classList.add('hidden'); $('hud').classList.remove('hidden'); $('hud').classList.add('pre');
+  $('lureBox').classList.add('hidden');
   $('waveTxt').textContent = '1592년 7월 · 견내량';
   lastInput = performance.now();
 }
 function panel(id) {
-  for (const p of ['pRes', 'pQuiz', 'pRank']) $(p).classList.toggle('hidden', p !== id);
+  for (const p of ['pRes', 'pDoc', 'pQuiz', 'pRank']) $(p).classList.toggle('hidden', p !== id);
   $('result').scrollTop = 0;
 }
 function showResult() {
   Snd.droneOff();
   const left = aliveShips().length, win = G.win;
-  if (win) G.score += left * 200 + (MAX_BREAK - G.breaks) * 100;
+  if (win) G.score += left * 200 + (MAX_BREAK - G.breaks) * 100 + (G.retreats === 0 ? 1000 : 0);
   G.state = 'result';
+  // 역사 재현도: 유인 20 + 학익진 20 + 격침(59척 기준) 30 + 피해 0척 30
+  const raw = G.lurePct / 100 * 20 + G.formQ / 100 * 20 + Math.min(G.kills, 59) / 59 * 30 + Math.max(0, 30 - G.retreats * 6);
+  G.repro = Math.round(win ? raw : raw * 0.6);
   let rank, name;
   if (!win) { rank = 'C'; name = '다시 도전'; }
-  else if (G.lost === 0 && G.breaks === 0) { rank = 'S'; name = '명장'; }
-  else if (G.lost <= 2 && G.breaks <= 2) { rank = 'A'; name = '대승'; }
+  else if (G.retreats === 0 && G.breaks === 0) { rank = 'S'; name = '명장'; }
+  else if (G.retreats <= 2 && G.breaks <= 2) { rank = 'A'; name = '대승'; }
   else { rank = 'B'; name = '승리'; }
   const tt = $('resTitle'); tt.textContent = win ? '한산도 대첩 승리!' : '방어선이 무너졌습니다'; tt.className = 'serif ' + (win ? 'win' : 'lose');
   $('resRank').textContent = rank; $('resRankName').textContent = name;
   $('resKill').textContent = G.kills + ' / ' + TOTAL + '척';
-  $('resShip').textContent = left + ' / ' + FLEET + '척';
+  $('resShip').textContent = G.retreats ? G.retreats + '척 (침몰 0)' : '0척 🛡';
+  $('reproBar').style.width = '0'; $('reproTxt').textContent = G.repro + '%';
+  setTimeout(() => { $('reproBar').style.width = G.repro + '%'; }, 80);
+  const bd = $('badges'); bd.innerHTML = '';
+  [['🛡 피해 0척', G.retreats === 0], ['🚣 유인 성공', G.lurePct >= 60], ['🕊 학익진 완성', G.formQ >= 70], ['🎯 59척 이상 격침', G.kills >= 59], ['⚔ 적장 격퇴', G.bossBeat]]
+    .forEach(([t, ok]) => { const sp = document.createElement('span'); sp.textContent = t; if (!ok) sp.className = 'off'; bd.appendChild(sp); });
   $('resFact').innerHTML = win
-    ? '<b>실제 역사</b> · 이순신 함대는 왜선 73척 가운데 <b>59척</b>을 격침·나포했고, 조선 수군은 <b>한 척도 잃지 않았습니다.</b> 적장 와키자카 야스하루는 겨우 달아났습니다.'
-    : '<b>도움말</b> · 판옥선을 끌어 <b>적이 지나는 길목을 에워싸고</b>, 적이 점선(사거리) 안에 들어왔을 때 사격하세요. 거북선은 적이 몰렸을 때 쓰면 좋습니다.';
-  // 끝나자마자 오늘의 순위에 기록(이름은 나중에 바꿀 수 있음)
+    ? '<b>실제 역사</b> · 이순신 함대는 왜선 73척 가운데 <b>59척</b>을 격침·나포했고, 조선 수군은 <b>전선을 한 척도 잃지 않았습니다.</b> 적장 와키자카 야스하루는 겨우 달아났습니다.'
+    : '<b>도움말</b> · 판옥선을 끌어 <b>적이 지나는 길목을 에워싸고</b>, 적이 점선(사거리) 안에 들어왔을 때 사격하세요. 🚩 북 신호로 날개를 오므리고, 거북선은 적이 몰렸을 때 쓰면 좋습니다.';
+  buildDoc();
+  // 끝나자마자 오늘의 순위에 기록(이름은 나중에 바꿀 수 있음) — 자동 데모는 기록하지 않음
   const b = loadBoard(), d = new Date();
-  me = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), n: '수군 ' + (b.length + 1) + '호', s: G.score, r: rank, k: G.kills, at: Date.now(), t: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
+  me = G.demo ? null : { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), n: '수군 ' + (b.length + 1) + '호', s: G.score, r: rank, k: G.kills, at: Date.now(), t: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
   saveMe(); $('nameIn').value = '';
   buildQuiz();
   paintScore(); panel('pRes');
   $('hud').classList.add('hidden'); $('result').classList.remove('hidden');
   resDeadline = performance.now() + 90000;
 }
+/* ----- 나의 장계: 내 전투와 실제 기록 비교 ----- */
+function buildDoc() {
+  const rows = [
+    ['날짜', '1592년 7월 8일(음력)', '1592년 7월 8일(음력)', true],
+    ['유인 작전', '판옥선 6척 · 유인 성공률 ' + G.lurePct + '%', '판옥선 5~6척으로 견내량의 적을 한산도 앞바다로 끌어냄', G.lurePct >= 60],
+    ['진형', '학익진 완성도 ' + G.formQ + '%', '학익진을 펼쳐 적을 에워싸고 공격', G.formQ >= 70],
+    ['무기', '대형 총통 ' + G.shotsBig + '번 · 소형 총통 ' + G.shotsSmall + '번 일제 사격', '지자총통·현자총통 등 각종 총통을 쏨', G.shotsBig + G.shotsSmall > 0],
+    ['적선', '73척 가운데 ' + G.kills + '척 격침', '73척 가운데 59척 격침·나포 (47척 깨뜨림, 12척 나포)', G.kills >= 59],
+    ['우리 배', G.retreats ? '수리하러 물러난 배 ' + G.retreats + '척 · 침몰 0척' : '피해 0척', '전선 손실 0척 (다치거나 전사한 군사는 있었음)', G.retreats === 0],
+    ['적장', G.bossBeat ? '와키자카의 대장선을 물리침' : '대장선을 물리치지 못함', '와키자카 야스하루는 겨우 달아남', G.bossBeat],
+    ['거리 두기', '멀리서 격파 ' + G.farKills + '척 · 적이 배를 붙인 횟수 ' + G.boards + '번', '배를 붙여 올라타는 일본 수군의 전술에 총통 공격으로 맞섬', G.boards <= 3],
+  ];
+  const tb = $('docBody'); tb.innerHTML = '';
+  for (const [k, mine, real, ok] of rows) {
+    const tr = document.createElement('tr');
+    [[k, ''], [mine, ok ? 'ok' : ''], [real, '']].forEach(([v, c]) => { const td = document.createElement('td'); td.textContent = v; if (c) td.className = c; tr.appendChild(td); });
+    tb.appendChild(tr);
+  }
+}
+let recAnim = 0;
+function playRec() {
+  const c = $('recCv'), g = c.getContext('2d'), fr = G.rec;
+  const cw = 640, ch = Math.round(cw * H / W); c.width = cw; c.height = ch;
+  cancelAnimationFrame(recAnim);
+  if (!fr.length) return;
+  const t0 = performance.now(), dur = clamp(fr.length * 45, 6000, 14000);
+  const step = now => {
+    if ($('pDoc').classList.contains('hidden') || G.state !== 'result') return;
+    const p = (Math.max(0, now - t0) % (dur + 1800)) / dur, i = clamp(Math.floor(p * fr.length), 0, fr.length - 1), f = fr[i];
+    g.fillStyle = '#2a5560'; g.fillRect(0, 0, cw, ch); g.drawImage(terrain, 0, 0, cw, ch);
+    g.strokeStyle = '#ffb02e'; g.lineWidth = 2.5;
+    for (let k = 0; k < f.k; k++) { const [x, y, b] = G.recK[k], r = b ? 9 : 4; g.beginPath(); g.moveTo(x * cw - r, y * ch - r); g.lineTo(x * cw + r, y * ch + r); g.moveTo(x * cw + r, y * ch - r); g.lineTo(x * cw - r, y * ch + r); g.stroke(); }
+    g.fillStyle = '#e2483a'; for (const [x, y, b] of f.e) { g.beginPath(); g.arc(x * cw, y * ch, b === 2 ? 10 : b ? 7 : 4.5, 0, TAU); g.fill(); }
+    g.fillStyle = '#5ec8ff'; g.strokeStyle = '#06202f'; g.lineWidth = 1.5; for (const [x, y] of f.s) { g.beginPath(); g.arc(x * cw, y * ch, 6.5, 0, TAU); g.fill(); g.stroke(); }
+    g.fillStyle = 'rgba(0,0,0,.55)'; g.fillRect(8, 8, 150, 34); g.fillStyle = '#ffe08a'; g.font = 'bold 20px sans-serif'; g.textAlign = 'left'; g.textBaseline = 'middle';
+    g.fillText('⏱ ' + Math.round(i * 0.4) + '초 · 격침 ' + f.k, 16, 25);
+    g.fillStyle = 'rgba(255,255,255,.25)'; g.fillRect(0, ch - 5, cw, 5); g.fillStyle = '#ffe08a'; g.fillRect(0, ch - 5, cw * Math.min(1, p), 5);
+    recAnim = requestAnimationFrame(step);
+  };
+  recAnim = requestAnimationFrame(step);
+}
+function openDoc() { panel('pDoc'); playRec(); }
 function paintScore() {
   saveMe();
   best = todayBest();
@@ -1434,7 +1858,9 @@ function pos(e) { return { x: e.clientX, y: e.clientY }; }
 cv.addEventListener('pointerdown', e => {
   lastInput = performance.now(); Snd.init();
   if (!G) return;
-  if (G.state === 'intro') { if (G.introStep < 3) { G.t = 4.31; G.introStep = 2; for (const s of G.ships) if (s.decoy) { s.tx = s.slot.x; s.ty = s.slot.y; } } return; }
+  if (G.state === 'intro') { if (G.t > 0.6) startLure(); return; }
+  if (G.state === 'lure') { G.hold = true; G.holdId = e.pointerId; return; }
+  if (G.state === 'formation') { G.stroke = [pos(e)]; G.strokeId = e.pointerId; try { cv.setPointerCapture(e.pointerId); } catch (_) {} return; }
   if (G.state !== 'battle') return;
   const p = pos(e); let pick = null, bd = 1e9;
   for (const s of G.ships) { if (!s.alive) continue; const d = hyp(p.x - s.x, p.y - s.y); if (d < s.r + 20 * U && d < bd) { bd = d; pick = s; } }
@@ -1442,21 +1868,38 @@ cv.addEventListener('pointerdown', e => {
   else fire();
 });
 cv.addEventListener('pointermove', e => {
+  if (G && G.state === 'formation' && G.stroke && e.pointerId === G.strokeId && !G.demo) {
+    lastInput = performance.now();
+    const p = pos(e), l = G.stroke[G.stroke.length - 1];
+    if (hyp(p.x - l.x, p.y - l.y) > 5 * U && G.stroke.length < 400) G.stroke.push(p);
+    return;
+  }
   if (!G || !G.drag || G.drag.pid !== e.pointerId) return;
   lastInput = performance.now();
   const s = G.drag, p = pos(e);
   s.x = clamp(p.x, s.r, W - s.r); s.y = clamp(p.y, H * 0.3, H - 40 * U);
   seaClamp(s, s.r);
 });
-const endDrag = e => { if (G && G.drag && G.drag.pid === e.pointerId) G.drag = null; };
+const endDrag = e => {
+  if (!G) return;
+  if (G.state === 'lure' && !G.demo) G.hold = false;
+  if (G.state === 'formation' && G.stroke && e.pointerId === G.strokeId && !G.demo) { finishFormation(G.stroke); return; }
+  if (G.drag && G.drag.pid === e.pointerId) G.drag = null;
+};
 cv.addEventListener('pointerup', endDrag); cv.addEventListener('pointercancel', endDrag);
 const press = (el, fn) => el.addEventListener('pointerdown', e => { e.preventDefault(); lastInput = performance.now(); Snd.init(); fn(); });
 press(btnFire, fire);
 press(btnTurtle, activateTurtle);
+press(btnGun, switchGun);
+press(btnSig, signal);
 $('btnStart').addEventListener('click', startGame);
 $('btnRetry').addEventListener('click', startGame);
-$('btnQuiz').addEventListener('click', () => { Snd.click(); qi = 0; showQ(); panel('pQuiz'); });
+const openQuiz = () => { Snd.click(); qi = 0; showQ(); panel('pQuiz'); };
+$('btnQuiz').addEventListener('click', openQuiz);
+$('btnQuiz2').addEventListener('click', openQuiz);
+$('btnDoc').addEventListener('click', () => { Snd.click(); openDoc(); });
 $('btnSkip').addEventListener('click', () => { Snd.click(); showRank(); });
+$('btnSkip2').addEventListener('click', () => { Snd.click(); showRank(); });
 $('btnNext').addEventListener('click', () => { Snd.click(); qi++; if (qi < quiz.length) { showQ(); $('result').scrollTop = 0; } else showRank(); });
 $('btnName').addEventListener('click', setName);
 $('nameIn').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') setName(); if (resDeadline) resDeadline = Math.max(resDeadline, performance.now() + 60000); });
@@ -1471,10 +1914,26 @@ window.addEventListener('keydown', e => {
   lastInput = performance.now();
   if (e.target && e.target.tagName === 'INPUT') return;
   if (G.state === 'result') return;   // 결과·퀴즈 화면에서는 버튼으로만
-  if (e.code === 'Space') { e.preventDefault(); if (G.state === 'title') startGame(); else fire(); }
+  if (e.code === 'Space') {
+    e.preventDefault();
+    if (G.state === 'title') startGame();
+    else if (G.state === 'intro') startLure();
+    else if (G.state === 'lure') G.hold = true;
+    else if (G.state === 'formation') finishFormation(null);
+    else fire();
+  }
   else if (e.code === 'KeyT' || e.code === 'Enter') { if (G.state === 'title' || G.state === 'result') startGame(); else activateTurtle(); }
+  else if (e.code === 'KeyG') switchGun();
+  else if (e.code === 'KeyF') signal();
   else if (e.code === 'KeyM') $('btnMute').click();
 });
+window.addEventListener('keyup', e => { if (e.code === 'Space' && G && G.state === 'lure' && !G.demo) G.hold = false; });
+// 자동 데모 중에는 어떤 입력이든 데모를 멈추고 처음 화면으로
+const demoGuard = e => {
+  if (G && G.demo) { e.preventDefault(); e.stopPropagation(); endDemo(); return; }
+  if (performance.now() < demoBlockUntil && (e.type === 'click' || e.type === 'pointerup')) { e.preventDefault(); e.stopPropagation(); }
+};
+for (const ev of ['pointerdown', 'pointerup', 'click', 'keydown']) window.addEventListener(ev, demoGuard, true);
 window.addEventListener('contextmenu', e => e.preventDefault());
 window.addEventListener('resize', resize);
 document.addEventListener('pointerdown', () => { lastInput = performance.now(); if (resDeadline) resDeadline = Math.max(resDeadline, performance.now() + 45000); }, true);
@@ -1482,7 +1941,8 @@ document.addEventListener('pointerdown', () => { lastInput = performance.now(); 
 /* ============ 시작 ============ */
 resize();
 goTitle();
-window.__hansan = { get G() { return G; }, fire, activateTurtle, startGame, showResult };
+if (demoHash) startDemo();
+window.__hansan = { get G() { return G; }, fire, activateTurtle, startGame, showResult, startDemo, endDemo, startLure, finishFormation, switchGun, signal, openDoc };
 requestAnimationFrame(frame);
 })();
 </script>
